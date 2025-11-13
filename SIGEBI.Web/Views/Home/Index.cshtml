@@ -2,327 +2,43 @@
     ViewData["Title"] = "SIGEBI";
 }
 
-<section class="hero card shadow-sm border-0 mb-5 overflow-hidden">
-    <div class="row g-0 align-items-center">
-        <div class="col-lg-7 p-5">
-            <p class="text-uppercase text-primary fw-bold mb-2">SIGEBI</p>
-            <h1 class="display-5 fw-bold mb-3">Administra préstamos, catálogos y reportes desde un mismo tablero</h1>
-            <p class="lead text-muted mb-4">
-                Usa este panel para monitorear el flujo de la biblioteca: consulta usuarios, crea préstamos, revisa penalizaciones
-                y mantén tus reportes en línea con la capa de aplicación.
-            </p>
-            <div class="d-flex flex-wrap gap-3">
-                <a class="btn btn-light btn-lg px-4" asp-controller="Prestamo" asp-action="Index">Panel de préstamos</a>
-                <a class="btn btn-outline-light btn-lg px-4" asp-page="/Libros/Index">Catálogo de libros</a>
-            </div>
-            <div class="hero-quick-links mt-4">
-                <a asp-controller="Prestamo" asp-action="Create">➕ Nuevo préstamo</a>
-                <a asp-page="/Libros/Create">📘 Registrar libro</a>
-                <a asp-controller="Home" asp-action="Privacy">🔐 Políticas y privacidad</a>
-                <a asp-page="/Libros/Index">📊 Inventario</a>
-            </div>
-        </div>
-        <div class="col-lg-5 text-center bg-hero-illustration">
-            <img src="~/img/library-dashboard.svg"
-                 alt="Ilustración de panel bibliotecario"
-                 class="img-fluid hero-illustration"
-                 loading="lazy" />
+<div class="row align-items-center mb-5">
+    <div class="col-lg-6">
+        <h1 class="display-4 fw-bold">Sistema Integral de Gestión de Bibliotecas</h1>
+        <p class="lead">Administra préstamos, catálogos y usuarios reutilizando la misma lógica de negocio que impulsa la API.</p>
+        <div class="d-flex gap-3">
+            <a class="btn btn-primary btn-lg" asp-controller="Prestamo" asp-action="Index">Gestionar préstamos</a>
+            <a class="btn btn-outline-secondary btn-lg" asp-controller="Home" asp-action="Privacy">Políticas</a>
         </div>
     </div>
-</section>
+    <div class="col-lg-6 text-center">
+        <img src="~/img/library-dashboard.svg" alt="Ilustración de biblioteca" class="img-fluid" onerror="this.style.display='none';" />
+    </div>
+</div>
 
-<section class="row g-4 mb-5 dashboard-metrics">
-    <div class="col-md-3">
-        <article class="metric-card">
-            <div class="metric-label">Préstamos activos</div>
-            <div class="metric-value">32</div>
-            <div class="progress" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-primary" style="width: 72%"></div>
-            </div>
-            <a class="stretched-link" asp-controller="Prestamo" asp-action="Index">Ir al módulo</a>
-        </article>
-    </div>
-    <div class="col-md-3">
-        <article class="metric-card">
-            <div class="metric-label">Reservas en revisión</div>
-            <div class="metric-value text-warning">14</div>
-            <div class="progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-warning" style="width: 40%"></div>
-            </div>
-            <a class="stretched-link" asp-page="/Libros/Index">Ver catálogo</a>
-        </article>
-    </div>
-    <div class="col-md-3">
-        <article class="metric-card">
-            <div class="metric-label">Penalizaciones activas</div>
-            <div class="metric-value text-danger">5</div>
-            <div class="progress" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-danger" style="width: 18%"></div>
-            </div>
-            <a class="stretched-link" asp-controller="Penalizacion" asp-action="Index">Gestionar penalizaciones</a>
-        </article>
-    </div>
-    <div class="col-md-3">
-        <article class="metric-card">
-            <div class="metric-label">Usuarios conectados</div>
-            <div class="metric-value text-success">87</div>
-            <div class="progress" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-success" style="width: 90%"></div>
-            </div>
-            <a class="stretched-link" asp-controller="Usuario" asp-action="Index">Ver usuarios</a>
-        </article>
-    </div>
-</section>
-
-<section class="row g-4 mb-5">
-    <div class="col-lg-8">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-body p-4">
-                <div class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center mb-4">
-                    <div>
-                        <p class="text-uppercase text-muted fw-semibold mb-1">Acciones rápidas</p>
-                        <h2 class="fw-bold mb-0">Trabaja con datos reales desde el dashboard</h2>
-                    </div>
-                    <div class="ms-lg-auto d-flex gap-2">
-                        <a class="btn btn-outline-primary" asp-controller="Prestamo" asp-action="Create">Nuevo préstamo</a>
-                        <a class="btn btn-outline-secondary" asp-page="/Libros/Create">Registrar libro</a>
-                    </div>
-                </div>
-                <div class="quick-search-grid">
-                    <form asp-controller="Prestamo" asp-action="Index" method="post" class="quick-search-card">
-                        @Html.AntiForgeryToken()
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div>
-                                <p class="text-uppercase text-muted fw-semibold mb-1">Buscar préstamos</p>
-                                <h5 class="fw-bold mb-0">Ingresa el GUID de usuario</h5>
-                            </div>
-                            <span class="badge text-bg-primary">Prestamos</span>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="dashboardUsuarioId">Usuario ID</label>
-                            <input class="form-control" type="text" id="dashboardUsuarioId" name="UsuarioId" placeholder="00000000-0000-0000-0000-000000000000" />
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Consultar</button>
-                    </form>
-                    <div class="quick-search-card">
-                        <p class="text-uppercase text-muted fw-semibold mb-1">Notificaciones</p>
-                        <h5 class="fw-bold">Seguimiento en tiempo real</h5>
-                        <p class="text-muted mb-4">Activa recordatorios para usuarios con préstamos próximos a vencer y monitorea su estado desde Notificaciones.</p>
-                        <div class="d-flex flex-wrap gap-2">
-                            <a class="btn btn-outline-primary" asp-controller="Notificacion" asp-action="Index">Abrir módulo</a>
-                            <a class="btn btn-link text-decoration-none" asp-controller="Prestamo" asp-action="Index">Ver préstamos vinculados →</a>
-                        </div>
-                    </div>
-                </div>
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Préstamos conectados</h5>
+                <p class="card-text">La UI consulta y crea préstamos a través de <code>IPrestamoService</code>, garantizando reglas de dominio consistentes.</p>
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-body p-4">
-                <p class="text-uppercase text-muted fw-semibold mb-1">Actividad reciente</p>
-                <h4 class="fw-bold">Eventos del sistema</h4>
-                <ul class="activity-feed list-unstyled mt-4 mb-0">
-                    <li>
-                        <span class="activity-dot bg-primary"></span>
-                        <div>
-                            <strong>3 préstamos</strong> activados desde la web.
-                            <p class="text-muted mb-0">Hace 5 minutos</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="activity-dot bg-success"></span>
-                        <div>
-                            <strong>1 reporte mensual</strong> exportado por el área académica.
-                            <p class="text-muted mb-0">Hace 12 minutos</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="activity-dot bg-warning"></span>
-                        <div>
-                            <strong>2 penalizaciones</strong> pendientes de confirmación.
-                            <p class="text-muted mb-0">Hace 30 minutos</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="activity-dot bg-info"></span>
-                        <div>
-                            <strong>4 libros</strong> añadidos al catálogo.
-                            <p class="text-muted mb-0">Hace 1 hora</p>
-                        </div>
-                    </li>
-                </ul>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Validaciones completas</h5>
+                <p class="card-text">Los formularios Razor muestran errores provenientes de FluentValidation y validaciones del lado del cliente.</p>
             </div>
         </div>
     </div>
-</section>
-
-<section class="card border-0 shadow-sm mb-5">
-    <div class="card-body p-4">
-        <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-4 mb-4">
-            <div>
-                <p class="text-uppercase text-muted fw-semibold mb-1">Módulos del sistema</p>
-                <h2 class="fw-bold mb-0">Navega entre casos de uso conectados a la capa de aplicación</h2>
-            </div>
-            <div class="ms-lg-auto">
-                <span class="badge text-bg-primary">MVC</span>
-                <span class="badge text-bg-success">FluentValidation</span>
-                <span class="badge text-bg-info">Partial Views</span>
-            </div>
-        </div>
-        <div class="module-grid">
-            <a class="module-card" asp-controller="Prestamo" asp-action="Index">
-                <span class="module-icon bg-primary bg-opacity-10 text-primary">🔁</span>
-                <h5 class="fw-bold">Préstamos</h5>
-                <p class="text-muted flex-grow-1">Consultar historial, activar préstamos y revisar extensiones.</p>
-                <span class="module-link">Entrar</span>
-            </a>
-            <a class="module-card" asp-page="/Libros/Index">
-                <span class="module-icon bg-success bg-opacity-10 text-success">📚</span>
-                <h5 class="fw-bold">Libros</h5>
-                <p class="text-muted flex-grow-1">Administra títulos, ejemplares y disponibilidad.</p>
-                <span class="module-link">Entrar</span>
-            </a>
-            <a class="module-card" asp-controller="Usuario" asp-action="Index">
-                <span class="module-icon bg-info bg-opacity-10 text-info">👤</span>
-                <h5 class="fw-bold">Usuarios</h5>
-                <p class="text-muted flex-grow-1">Gestiona perfiles y accesos de lectores.</p>
-                <span class="module-link">Entrar</span>
-            </a>
-            <a class="module-card" asp-controller="Penalizacion" asp-action="Index">
-                <span class="module-icon bg-danger bg-opacity-10 text-danger">⚠️</span>
-                <h5 class="fw-bold">Penalizaciones</h5>
-                <p class="text-muted flex-grow-1">Controla sanciones y desbloqueos.</p>
-                <span class="module-link">Entrar</span>
-            </a>
-            <a class="module-card" asp-controller="Reporte" asp-action="Index">
-                <span class="module-icon bg-secondary bg-opacity-10 text-secondary">📈</span>
-                <h5 class="fw-bold">Reportes</h5>
-                <p class="text-muted flex-grow-1">Genera KPIs y métricas académicas.</p>
-                <span class="module-link">Entrar</span>
-            </a>
-            <a class="module-card" asp-controller="Notificacion" asp-action="Index">
-                <span class="module-icon bg-warning bg-opacity-10 text-warning">🔔</span>
-                <h5 class="fw-bold">Notificaciones</h5>
-                <p class="text-muted flex-grow-1">Envia alertas y recordatorios automáticos.</p>
-                <span class="module-link">Entrar</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-<section class="card border-0 shadow-sm mb-5 module-tabs">
-    <div class="card-body p-4">
-        <div class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center">
-            <div>
-                <p class="text-uppercase text-muted fw-semibold mb-1">Foco de módulos</p>
-                <h3 class="fw-bold mb-0">Explora el detalle interactivo</h3>
-            </div>
-            <div class="ms-lg-auto">
-                <ul class="nav nav-pills module-nav" id="moduleTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="prestamos-tab" data-bs-toggle="pill" data-bs-target="#prestamos-pane" type="button" role="tab">Préstamos</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="libros-tab" data-bs-toggle="pill" data-bs-target="#libros-pane" type="button" role="tab">Libros</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="reportes-tab" data-bs-toggle="pill" data-bs-target="#reportes-pane" type="button" role="tab">Reportes</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="tab-content mt-4" id="moduleTabsContent">
-            <div class="tab-pane fade show active" id="prestamos-pane" role="tabpanel" aria-labelledby="prestamos-tab">
-                <div class="module-pane">
-                    <div>
-                        <h4 class="fw-bold">Control en vivo de préstamos</h4>
-                        <p class="text-muted">Conecta la acción Index/Create del controlador con la partial <em>_PrestamoResultados</em> para ver estados, renovaciones y entregas.</p>
-                    </div>
-                    <a class="btn btn-primary" asp-controller="Prestamo" asp-action="Index">Abrir Préstamos</a>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="libros-pane" role="tabpanel" aria-labelledby="libros-tab">
-                <div class="module-pane">
-                    <div>
-                        <h4 class="fw-bold">Catálogo y disponibilidad</h4>
-                        <p class="text-muted">Registra títulos nuevos y consulta stock desde las Razor Pages de Libros conectadas al mismo contexto.</p>
-                    </div>
-                    <a class="btn btn-success" asp-page="/Libros/Index">Abrir Libros</a>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="reportes-pane" role="tabpanel" aria-labelledby="reportes-tab">
-                <div class="module-pane">
-                    <div>
-                        <h4 class="fw-bold">Análisis y métricas</h4>
-                        <p class="text-muted">Centraliza indicadores mensuales para auditorías académicas y comparte resultados con stakeholders.</p>
-                    </div>
-                    <a class="btn btn-outline-secondary" asp-controller="Reporte" asp-action="Index">Abrir Reportes</a>
-                </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Arquitectura en capas</h5>
+                <p class="card-text">El sitio web referencia directamente Application + Domain + Persistence para reutilizar los casos de uso del backend.</p>
             </div>
         </div>
     </div>
-</section>
-
-<section class="card border-0 shadow-sm mb-5">
-    <div class="card-body p-4">
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-7">
-                <h2 class="fw-bold mb-3">Flujo funcional verificado</h2>
-                <p class="text-muted">La práctica incluye pruebas manuales sobre escenarios válidos e inválidos, garantizando que los datos viajan correctamente entre las capas.</p>
-                <ul class="timeline list-unstyled mt-4 mb-0">
-                    <li>
-                        <span class="timeline-dot bg-primary"></span>
-                        <div>
-                            <h6 class="mb-1">UI → Servicios</h6>
-                            <p class="text-muted mb-0">Los controladores MVC traducen los view models a comandos y coordinan respuestas consistentes.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="timeline-dot bg-success"></span>
-                        <div>
-                            <h6 class="mb-1">Validación</h6>
-                            <p class="text-muted mb-0">Se aplican validaciones en ambas capas para evitar datos inconsistentes.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="timeline-dot bg-info"></span>
-                        <div>
-                            <h6 class="mb-1">Persistencia</h6>
-                            <p class="text-muted mb-0">Los repositorios actualizan el estado del préstamo y retornan información lista para mostrar.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-5">
-                <div class="card cta-card border-0">
-                    <div class="card-body p-4">
-                        <p class="text-uppercase text-muted fw-semibold mb-1">¿Listo para continuar?</p>
-                        <h4 class="fw-bold mb-3">Crea un préstamo y valida la experiencia completa.</h4>
-                        <p class="text-muted mb-4">Comprueba las validaciones y el renderizado parcial con <em>_PrestamoResultados</em>.</p>
-                        <a class="btn btn-primary w-100" asp-controller="Prestamo" asp-action="Create">Nuevo préstamo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="card border-0 shadow-sm mb-5">
-    <div class="card-body p-4">
-        <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-4 mb-4">
-            <div>
-                <p class="text-uppercase text-muted fw-semibold mb-1">Checklist de la práctica</p>
-                <h2 class="fw-bold mb-0">Capas conectadas con validaciones y vistas parciales</h2>
-            </div>
-            <div class="ms-lg-auto">
-                <span class="badge text-bg-primary">ASP.NET Core MVC</span>
-                <span class="badge text-bg-success">FluentValidation</span>
-                <span class="badge text-bg-info">Partial Views</span>
-            </div>
-        </div>
-        @await Html.PartialAsync("_HomeChecklist")
-    </div>
-</section>
-
-@await Html.PartialAsync("_HomeDemoGuide")
+</div>
