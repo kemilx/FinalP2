@@ -1,0 +1,52 @@
+@using SIGEBI.Web.Models
+@model PrestamoBusquedaViewModel
+@{
+    ViewData["Title"] = "Préstamos";
+}
+
+<h1 class="mb-4">Préstamos</h1>
+
+@if (TempData["PrestamoCreado"] is string prestamoId)
+{
+    <div class="alert alert-success" role="alert">
+        Se registró el préstamo <strong>@prestamoId</strong>. Utilice el mismo usuario para ver el detalle actualizado.
+    </div>
+}
+
+<div class="card mb-4">
+    <div class="card-header">Buscar préstamos por usuario</div>
+    <div class="card-body">
+        <form asp-action="Index" method="post" class="row g-3">
+            <div class="col-12">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </div>
+            <div class="col-12 col-md-7">
+                <label asp-for="UsuarioId" class="form-label"></label>
+                <input asp-for="UsuarioId" class="form-control" placeholder="00000000-0000-0000-0000-000000000000" />
+                <div class="form-text">Ingrese el identificador GUID del usuario registrado en SIGEBI.</div>
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
+            </div>
+            <div class="col-12 col-md-3 align-self-end">
+                <button type="submit" class="btn btn-primary w-100">Buscar</button>
+            </div>
+            <div class="col-12 col-md-2 align-self-end text-md-end">
+                <a asp-action="Create" class="btn btn-outline-success w-100">Nuevo préstamo</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.BusquedaRealizada)
+{
+    <partial name="_PrestamoResultados" model="Model.Resultados" />
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        Usa el formulario anterior para listar los préstamos vinculados a un usuario.
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
