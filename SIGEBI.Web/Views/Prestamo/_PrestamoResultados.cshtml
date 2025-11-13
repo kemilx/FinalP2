@@ -1,0 +1,62 @@
+@using SIGEBI.Web.Models
+@model IReadOnlyList<PrestamoViewModel>
+
+@if (Model is null || Model.Count == 0)
+{
+    <div class="alert alert-warning" role="alert">
+        No se encontraron préstamos para el usuario consultado.
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">Resultados (@Model.Count)</div>
+        <div class="table-responsive">
+            <table class="table table-striped align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Préstamo</th>
+                        <th>Libro</th>
+                        <th>Periodo</th>
+                        <th>Estado</th>
+                        <th>Entrega real</th>
+                        <th>Notas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var prestamo in Model)
+                    {
+                        <tr>
+                            <td class="font-monospace small">@prestamo.Id</td>
+                            <td class="font-monospace small">@prestamo.LibroId</td>
+                            <td>@prestamo.PeriodoDescripcion</td>
+                            <td>
+                                <span class="badge text-bg-secondary">@prestamo.EstadoDescripcion</span>
+                            </td>
+                            <td>
+                                @if (prestamo.FechaEntregaRealUtc.HasValue)
+                                {
+                                    @prestamo.FechaEntregaRealUtc.Value.ToLocalTime().ToString("dd/MM/yyyy")
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Pendiente</span>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(prestamo.Observaciones))
+                                {
+                                    @prestamo.Observaciones
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Sin notas</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

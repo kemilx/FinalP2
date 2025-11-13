@@ -1,8 +1,54 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "SIGEBI";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="mb-5">
+    <h1 class="h3">Integración funcional SIGEBI</h1>
+    <p>
+        Esta práctica conecta la interfaz MVC con la misma lógica de negocio utilizada por la API. El objetivo es que el alumno visualice,
+        desde una pantalla inicial sencilla, cómo se orquesta la comunicación entre controladores, servicios y repositorios para cumplir con el flujo de préstamos.
+    </p>
+</section>
+
+<section class="mb-4">
+    <h2 class="h5">Diseño de la estructura de integración</h2>
+    <p>
+        El módulo <code>PrestamoController</code> se apoya en <code>IPrestamoService</code> para reutilizar comandos como <code>CrearPrestamoCommand</code> y las entidades de la capa de dominio.
+        Los modelos <code>PrestamoBusquedaViewModel</code>, <code>CrearPrestamoViewModel</code> y <code>PrestamoViewModel</code> sirven como DTOs propios de la vista.
+    </p>
+    <ul>
+        <li>Controladores registrados mediante <code>AddSIGEBIDependencies</code>.</li>
+        <li>Servicios y validadores de FluentValidation compartidos con la API.</li>
+        <li>Vistas Razor conectadas a componentes reutilizables.</li>
+    </ul>
+</section>
+
+<section class="mb-4">
+    <h2 class="h5">Implementación técnica</h2>
+    <p>
+        La pantalla de búsqueda y la pantalla de creación de préstamos convierten los formularios en comandos de aplicación, procesan las respuestas y muestran los resultados mediante la partial view <code>_PrestamoResultados</code>.
+    </p>
+    <p>
+        Navega al módulo desde el menú o usando este enlace directo: <a asp-controller="Prestamo" asp-action="Index">Préstamos</a>.
+    </p>
+</section>
+
+<section class="mb-4">
+    <h2 class="h5">Validaciones</h2>
+    <p>
+        Cada formulario aplica validaciones del lado del cliente con data annotations y del lado del servidor mediante FluentValidation.
+        La página muestra los mensajes devueltos por la capa de aplicación para que el usuario compruebe el comportamiento ante datos válidos e inválidos.
+    </p>
+</section>
+
+<section>
+    <h2 class="h5">Pruebas funcionales sugeridas</h2>
+    <ol>
+        <li>Registrar un préstamo desde <em>Nuevo préstamo</em> verificando que los GUID requeridos y las fechas se validan correctamente.</li>
+        <li>Volver a <em>Préstamos</em>, consultar por el mismo usuario y confirmar que los datos devueltos por <code>IPrestamoService</code> se renderizan en la partial.</li>
+        <li>Repetir la búsqueda con un GUID vacío o inexistente para observar los errores proporcionados por la lógica de negocio.</li>
+    </ol>
+    <p>
+        Estos pasos comprueban que los datos viajan entre presentación, aplicación y persistencia respetando la arquitectura por capas.
+    </p>
+</section>
