@@ -2,53 +2,43 @@
     ViewData["Title"] = "SIGEBI";
 }
 
-<section class="mb-5">
-    <h1 class="h3">Integración funcional SIGEBI</h1>
-    <p>
-        Esta práctica conecta la interfaz MVC con la misma lógica de negocio utilizada por la API. El objetivo es que el alumno visualice,
-        desde una pantalla inicial sencilla, cómo se orquesta la comunicación entre controladores, servicios y repositorios para cumplir con el flujo de préstamos.
-    </p>
-</section>
+<div class="row align-items-center mb-5">
+    <div class="col-lg-6">
+        <h1 class="display-4 fw-bold">Sistema Integral de Gestión de Bibliotecas</h1>
+        <p class="lead">Administra préstamos, catálogos y usuarios reutilizando la misma lógica de negocio que impulsa la API.</p>
+        <div class="d-flex gap-3">
+            <a class="btn btn-primary btn-lg" asp-controller="Prestamo" asp-action="Index">Gestionar préstamos</a>
+            <a class="btn btn-outline-secondary btn-lg" asp-controller="Home" asp-action="Privacy">Políticas</a>
+        </div>
+    </div>
+    <div class="col-lg-6 text-center">
+        <img src="~/img/library-dashboard.svg" alt="Ilustración de biblioteca" class="img-fluid" onerror="this.style.display='none';" />
+    </div>
+</div>
 
-<section class="mb-4">
-    <h2 class="h5">Diseño de la estructura de integración</h2>
-    <p>
-        El módulo <code>PrestamoController</code> se apoya en <code>IPrestamoService</code> para reutilizar comandos como <code>CrearPrestamoCommand</code> y las entidades de la capa de dominio.
-        Los modelos <code>PrestamoBusquedaViewModel</code>, <code>CrearPrestamoViewModel</code> y <code>PrestamoViewModel</code> sirven como DTOs propios de la vista.
-    </p>
-    <ul>
-        <li>Controladores registrados mediante <code>AddSIGEBIDependencies</code>.</li>
-        <li>Servicios y validadores de FluentValidation compartidos con la API.</li>
-        <li>Vistas Razor conectadas a componentes reutilizables.</li>
-    </ul>
-</section>
-
-<section class="mb-4">
-    <h2 class="h5">Implementación técnica</h2>
-    <p>
-        La pantalla de búsqueda y la pantalla de creación de préstamos convierten los formularios en comandos de aplicación, procesan las respuestas y muestran los resultados mediante la partial view <code>_PrestamoResultados</code>.
-    </p>
-    <p>
-        Navega al módulo desde el menú o usando este enlace directo: <a asp-controller="Prestamo" asp-action="Index">Préstamos</a>.
-    </p>
-</section>
-
-<section class="mb-4">
-    <h2 class="h5">Validaciones</h2>
-    <p>
-        Cada formulario aplica validaciones del lado del cliente con data annotations y del lado del servidor mediante FluentValidation.
-        La página muestra los mensajes devueltos por la capa de aplicación para que el usuario compruebe el comportamiento ante datos válidos e inválidos.
-    </p>
-</section>
-
-<section>
-    <h2 class="h5">Pruebas funcionales sugeridas</h2>
-    <ol>
-        <li>Registrar un préstamo desde <em>Nuevo préstamo</em> verificando que los GUID requeridos y las fechas se validan correctamente.</li>
-        <li>Volver a <em>Préstamos</em>, consultar por el mismo usuario y confirmar que los datos devueltos por <code>IPrestamoService</code> se renderizan en la partial.</li>
-        <li>Repetir la búsqueda con un GUID vacío o inexistente para observar los errores proporcionados por la lógica de negocio.</li>
-    </ol>
-    <p>
-        Estos pasos comprueban que los datos viajan entre presentación, aplicación y persistencia respetando la arquitectura por capas.
-    </p>
-</section>
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Préstamos conectados</h5>
+                <p class="card-text">La UI consulta y crea préstamos a través de <code>IPrestamoService</code>, garantizando reglas de dominio consistentes.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Validaciones completas</h5>
+                <p class="card-text">Los formularios Razor muestran errores provenientes de FluentValidation y validaciones del lado del cliente.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Arquitectura en capas</h5>
+                <p class="card-text">El sitio web referencia directamente Application + Domain + Persistence para reutilizar los casos de uso del backend.</p>
+            </div>
+        </div>
+    </div>
+</div>
