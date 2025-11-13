@@ -1,8 +1,107 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "SIGEBI";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="hero card shadow-sm border-0 mb-5 overflow-hidden">
+    <div class="row g-0 align-items-center">
+        <div class="col-lg-7 p-5">
+            <p class="text-uppercase text-primary fw-bold mb-2">SIGEBI</p>
+            <h1 class="display-5 fw-bold mb-3">Gestiona tu biblioteca con una sola plataforma</h1>
+            <p class="lead text-muted mb-4">
+                Conecta la interfaz MVC con los mismos casos de uso que utiliza la API para registrar, monitorear y auditar cada préstamo.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+                <a class="btn btn-primary btn-lg px-4" asp-controller="Prestamo" asp-action="Index">Ir a préstamos</a>
+                <a class="btn btn-outline-light btn-lg px-4" asp-controller="Home" asp-action="Privacy">Ver políticas</a>
+            </div>
+            <div class="d-flex flex-wrap gap-4 mt-4">
+                <div>
+                    <p class="fs-2 fw-bold mb-0">+120</p>
+                    <p class="text-muted mb-0">Préstamos activos</p>
+                </div>
+                <div>
+                    <p class="fs-2 fw-bold mb-0">98%</p>
+                    <p class="text-muted mb-0">Solicitudes aprobadas</p>
+                </div>
+                <div>
+                    <p class="fs-2 fw-bold mb-0">24/7</p>
+                    <p class="text-muted mb-0">Disponibilidad</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 text-center bg-hero-illustration">
+            <img src="~/img/library-dashboard.svg"
+                 alt="Ilustración de panel bibliotecario"
+                 class="img-fluid hero-illustration"
+                 onerror="this.style.display='none';" />
+        </div>
+    </div>
+</section>
+
+<section class="row g-4 mb-5">
+    <div class="col-md-4">
+        <article class="feature-card h-100 p-4">
+            <div class="feature-icon bg-primary bg-opacity-10 text-primary mb-3">📚</div>
+            <h5 class="fw-bold mb-2">Préstamos conectados</h5>
+            <p class="text-muted mb-0">La UI consume <code>IPrestamoService</code> para mantener sincronizada la disponibilidad de ejemplares y los estados de préstamo.</p>
+        </article>
+    </div>
+    <div class="col-md-4">
+        <article class="feature-card h-100 p-4">
+            <div class="feature-icon bg-success bg-opacity-10 text-success mb-3">✔️</div>
+            <h5 class="fw-bold mb-2">Validaciones completas</h5>
+            <p class="text-muted mb-0">Los formularios Razor muestran errores provenientes de FluentValidation y de las anotaciones del lado del cliente.</p>
+        </article>
+    </div>
+    <div class="col-md-4">
+        <article class="feature-card h-100 p-4">
+            <div class="feature-icon bg-warning bg-opacity-10 text-warning mb-3">🧩</div>
+            <h5 class="fw-bold mb-2">Arquitectura en capas</h5>
+            <p class="text-muted mb-0">El sitio referencia Application + Domain + Persistence para reutilizar los casos de uso y mantener reglas centralizadas.</p>
+        </article>
+    </div>
+</section>
+
+<section class="card border-0 shadow-sm">
+    <div class="card-body p-4 p-lg-5">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+                <h2 class="fw-bold mb-3">Flujo funcional verificado</h2>
+                <p class="text-muted">La práctica incluye pruebas manuales sobre escenarios válidos e inválidos, garantizando que los datos viajan correctamente entre las capas.</p>
+                <ul class="timeline list-unstyled mt-4 mb-0">
+                    <li>
+                        <span class="timeline-dot bg-primary"></span>
+                        <div>
+                            <h6 class="mb-1">UI → Servicios</h6>
+                            <p class="text-muted mb-0">Los controladores MVC traducen los view models a comandos y coordinan respuestas consistentes.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="timeline-dot bg-success"></span>
+                        <div>
+                            <h6 class="mb-1">Validación</h6>
+                            <p class="text-muted mb-0">Se aplican validaciones en ambas capas para evitar datos inconsistentes.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="timeline-dot bg-info"></span>
+                        <div>
+                            <h6 class="mb-1">Persistencia</h6>
+                            <p class="text-muted mb-0">Los repositorios actualizan el estado del préstamo y retornan información lista para mostrar.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-5">
+                <div class="card cta-card border-0">
+                    <div class="card-body p-4">
+                        <p class="text-uppercase text-muted fw-semibold mb-1">¿Listo para continuar?</p>
+                        <h4 class="fw-bold mb-3">Crea un préstamo y valida la experiencia completa.</h4>
+                        <p class="text-muted mb-4">Comprueba las validaciones y el renderizado parcial con <em>_PrestamoResultados</em>.</p>
+                        <a class="btn btn-primary w-100" asp-controller="Prestamo" asp-action="Create">Nuevo préstamo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
