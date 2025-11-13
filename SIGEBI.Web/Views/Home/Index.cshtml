@@ -1,8 +1,44 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "SIGEBI";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row align-items-center mb-5">
+    <div class="col-lg-6">
+        <h1 class="display-4 fw-bold">Sistema Integral de Gestión de Bibliotecas</h1>
+        <p class="lead">Administra préstamos, catálogos y usuarios reutilizando la misma lógica de negocio que impulsa la API.</p>
+        <div class="d-flex gap-3">
+            <a class="btn btn-primary btn-lg" asp-controller="Prestamo" asp-action="Index">Gestionar préstamos</a>
+            <a class="btn btn-outline-secondary btn-lg" asp-controller="Home" asp-action="Privacy">Políticas</a>
+        </div>
+    </div>
+    <div class="col-lg-6 text-center">
+        <img src="~/img/library-dashboard.svg" alt="Ilustración de biblioteca" class="img-fluid" onerror="this.style.display='none';" />
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Préstamos conectados</h5>
+                <p class="card-text">La UI consulta y crea préstamos a través de <code>IPrestamoService</code>, garantizando reglas de dominio consistentes.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Validaciones completas</h5>
+                <p class="card-text">Los formularios Razor muestran errores provenientes de FluentValidation y validaciones del lado del cliente.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">Arquitectura en capas</h5>
+                <p class="card-text">El sitio web referencia directamente Application + Domain + Persistence para reutilizar los casos de uso del backend.</p>
+            </div>
+        </div>
+    </div>
 </div>
