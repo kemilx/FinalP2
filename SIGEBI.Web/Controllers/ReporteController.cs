@@ -1,6 +1,12 @@
-﻿namespace SIGEBI.Web.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
-public class ReporteController
+namespace SIGEBI.Web.Controllers;
+
+public class ReporteController : Controller
 {
-    
+    [HttpGet]
+    public IActionResult Index()
+    {
+        return View();
+    }
 }

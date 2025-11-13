@@ -1,0 +1,81 @@
+<section class="demo-guide card border-0 shadow-sm mt-5">
+    <div class="card-body p-4 p-lg-5">
+        <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-4 mb-4">
+            <div>
+                <p class="text-uppercase text-muted fw-semibold mb-1">Guía de demostración</p>
+                <h2 class="fw-bold mb-0">Cómo evidenciar cada actividad evaluada</h2>
+            </div>
+            <div class="ms-lg-auto text-lg-end">
+                <p class="text-muted mb-0">Usa estos pasos durante la presentación para mostrar que cada requisito está conectado con la lógica de negocio.</p>
+            </div>
+        </div>
+        <div class="demo-grid">
+            <article class="demo-card">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge text-bg-primary">Diseño</span>
+                    <h5 class="mb-0">Controladores, servicios y modelos</h5>
+                </div>
+                <p class="text-muted mb-3">Muestra cómo la UI reutiliza el caso de uso de préstamos desde la capa de aplicación.</p>
+                <ol class="mb-0">
+                    <li>Abre <code>Controllers/PrestamoController</code> y destaca la inyección de <code>IPrestamoService</code>.</li>
+                    <li>Desde la vista <code>Prestamo/Index</code> enseña los formularios que consumen <code>PrestamoBusquedaViewModel</code>.</li>
+                </ol>
+            </article>
+            <article class="demo-card">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge text-bg-primary">Diseño</span>
+                    <h5 class="mb-0">Vistas y componentes</h5>
+                </div>
+                <p class="text-muted mb-3">Conecta los componentes Razor con el flujo de negocio.</p>
+                <ol class="mb-0">
+                    <li>Navega a <strong>Préstamos &gt; Buscar</strong> para evidenciar la vista principal.</li>
+                    <li>Explica que la tabla de resultados proviene del componente parcial <code>_PrestamoResultados</code>.</li>
+                </ol>
+            </article>
+            <article class="demo-card">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge text-bg-success">Implementación</span>
+                    <h5 class="mb-0">Acciones y modelos de entrada/salida</h5>
+                </div>
+                <p class="text-muted mb-3">Demuestra la comunicación bidireccional entre UI y aplicación.</p>
+                <ol class="mb-0">
+                    <li>Ejecuta una búsqueda exitosa para mostrar cómo <code>Index(PrestamoBusquedaViewModel)</code> devuelve resultados.</li>
+                    <li>Muestra el formulario de creación y cómo <code>Create(CrearPrestamoViewModel)</code> retorna mensajes de confirmación.</li>
+                </ol>
+            </article>
+            <article class="demo-card">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge text-bg-success">Implementación</span>
+                    <h5 class="mb-0">Validaciones frontend/backend</h5>
+                </div>
+                <p class="text-muted mb-3">Resalta la doble validación requerida por la rúbrica.</p>
+                <ol class="mb-0">
+                    <li>Introduce un GUID vacío o fecha inválida para que <em>ModelState</em> muestre errores.</li>
+                    <li>Describe cómo las reglas de dominio (por ejemplo, ejemplares agotados) generan mensajes desde la capa de aplicación.</li>
+                </ol>
+            </article>
+            <article class="demo-card">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge text-bg-success">Implementación</span>
+                    <h5 class="mb-0">Renderizado parcial</h5>
+                </div>
+                <p class="text-muted mb-3">Explica la reutilización del listado de préstamos.</p>
+                <ol class="mb-0">
+                    <li>Realiza una búsqueda y señala cómo el bloque de resultados proviene de <code>_PrestamoResultados</code>.</li>
+                    <li>Muestra que el mismo componente gestiona estados vacíos y listados con datos.</li>
+                </ol>
+            </article>
+            <article class="demo-card">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge text-bg-warning">Pruebas</span>
+                    <h5 class="mb-0">Flujo correcto entre capas</h5>
+                </div>
+                <p class="text-muted mb-3">Presenta los escenarios validando entradas válidas e inválidas.</p>
+                <ol class="mb-0">
+                    <li>Busca un préstamo existente y explica el recorrido UI → Servicio → Persistencia.</li>
+                    <li>Repite con datos incorrectos para mostrar el manejo de errores y mensajes amigables.</li>
+                </ol>
+            </article>
+        </div>
+    </div>
+</section>
