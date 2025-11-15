@@ -1,0 +1,51 @@
+@using SIGEBI.Web.Models
+@model CrearPrestamoViewModel
+@{
+    ViewData["Title"] = "Nuevo préstamo";
+}
+
+<h1 class="mb-4">Registrar nuevo préstamo</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Create" method="post" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="LibroId" class="form-label"></label>
+                <input asp-for="LibroId" class="form-control" />
+                <div class="form-text">Utilice el identificador GUID del libro almacenado en la base de datos.</div>
+                <span asp-validation-for="LibroId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="UsuarioId" class="form-label"></label>
+                <input asp-for="UsuarioId" class="form-control" />
+                <div class="form-text">Corresponde al usuario que solicita el préstamo.</div>
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="FechaInicio" class="form-label"></label>
+                    <input asp-for="FechaInicio" class="form-control" type="date" />
+                    <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="FechaFin" class="form-label"></label>
+                    <input asp-for="FechaFin" class="form-control" type="date" />
+                    <span asp-validation-for="FechaFin" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

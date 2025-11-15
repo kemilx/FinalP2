@@ -1,6 +1,12 @@
-﻿namespace SIGEBI.Web.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
-public class NotificacionController
+namespace SIGEBI.Web.Controllers;
+
+public class NotificacionController : Controller
 {
-    
+    [HttpGet]
+    public IActionResult Index()
+    {
+        return View();
+    }
 }
