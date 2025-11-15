@@ -6,9 +6,6 @@ namespace SIGEBI.Web.Models;
 public sealed class HomeDashboardViewModel
 {
     public required AdminSummary Summary { get; init; }
-    public required IReadOnlyDictionary<string, int> PrestamosPorEstado { get; init; }
-    public required IReadOnlyDictionary<string, int> LibrosPorEstado { get; init; }
-    public required IReadOnlyList<PrestamoViewModel> PrestamosVencidos { get; init; }
     public required IReadOnlyList<DashboardModule> Modules { get; init; }
     public required IReadOnlyList<ActivityItem> Activity { get; init; }
     public required IReadOnlyList<HeroLink> HeroLinks { get; init; }
@@ -20,9 +17,6 @@ public sealed record DashboardModule(
     string Description,
     string Icon,
     string ColorClass,
-    string Category,
-    string MetricLabel,
-    int MetricValue,
     string? Controller = null,
     string? Action = null,
     string? Page = null);
