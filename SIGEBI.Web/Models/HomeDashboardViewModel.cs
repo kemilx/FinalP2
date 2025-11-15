@@ -17,7 +17,6 @@ public sealed record DashboardModule(
     string Description,
     string Icon,
     string ColorClass,
-    string Category,
     string? Controller = null,
     string? Action = null,
     string? Page = null);
